@@ -1,0 +1,27 @@
+.navbar_link{
+    transition: 0.3s;
+    color: #a4a4a4;
+    font-weight: bold;
+}
+
+.navbar_link:hover{
+    transition: 0.3s;
+    color: #fff;
+}
+
+.picture-bg{
+    background-image: url("../img/topbg.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.center_h1_white{
+    color: white;
+    font-weight: bold;
+}
+
+.centermenu{
+    width: 90%;
+    margin-left: 42.5%;
+}
