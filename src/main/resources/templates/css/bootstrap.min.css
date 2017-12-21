@@ -4074,7 +4074,6 @@ textarea.input-group-sm>.input-group-btn>.btn {
     border-color: #080808
 }
 .navbar-inverse .navbar-brand {
-    color: #999
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
@@ -4411,7 +4410,6 @@ a.list-group-item.active>.badge,
 }
 .jumbotron {
     padding: 30px;
-    margin-bottom: 30px;
     font-size: 21px;
     font-weight: 200;
     line-height: 2.1428571435;

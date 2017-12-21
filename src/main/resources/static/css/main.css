@@ -2,6 +2,7 @@
     transition: 0.3s;
     color: #a4a4a4;
     font-weight: bold;
+    font-size: 18px;
 }
 
 .navbar_link:hover{
@@ -24,4 +25,9 @@
 .centermenu{
     width: 90%;
     margin-left: 42.5%;
+}
+
+.black-bg{
+    background: #191919;
+    padding: 20px;
 }
