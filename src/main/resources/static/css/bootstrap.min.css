@@ -1,3 +1,11 @@
+/*!
+ * Bootstrap v3.0.2 by @fat and @mdo
+ * Copyright 2013 Twitter, Inc.
+ * Licensed under http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
+
 article,
 aside,
 details,
@@ -4066,7 +4074,6 @@ textarea.input-group-sm>.input-group-btn>.btn {
     border-color: #080808
 }
 .navbar-inverse .navbar-brand {
-    color: #999
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {

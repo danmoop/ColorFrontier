@@ -17,17 +17,26 @@
     background-size: cover;
 }
 
-.center_h1_white{
+.white-txt{
     color: white;
     font-weight: bold;
 }
 
 .centermenu{
     width: 90%;
-    margin-left: 42.5%;
+    margin-left: 48.5%;
 }
 
 .black-bg{
     background: #191919;
     padding: 20px;
+}
+
+.submit-btn{
+    transition: 0.3s;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    background: #1abc9c;
+    border-radius: 100px;
 }

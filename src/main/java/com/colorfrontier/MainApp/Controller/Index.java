@@ -11,4 +11,10 @@ public class Index
     {
         return "index";
     }
+
+    @GetMapping("/categories")
+    public String categories()
+    {
+        return "categories";
+    }
 }
