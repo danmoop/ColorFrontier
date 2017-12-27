@@ -23,7 +23,6 @@
 }
 
 .centermenu{
-    width: 90%;
     margin-left: 48.5%;
 }
 
@@ -40,3 +39,21 @@
     background: #1abc9c;
     border-radius: 100px;
 }
+
+.c-card{
+    transition: 0.2s;
+    padding: 0px;
+}
+
+.c-card:hover{
+    transition: 0.2s;
+    padding: 5px;
+}
+
+.register-bg{
+  background:url("../img/registerbg.jpg");
+  background-size: cover;
+  background-repeat:no-repeat;
+  overflow-y: hidden;
+  overflow-x: hidden;
+ }

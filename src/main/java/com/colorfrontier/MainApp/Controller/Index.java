@@ -17,4 +17,22 @@ public class Index
     {
         return "categories";
     }
+
+    @GetMapping("/best")
+    public String bestProjects()
+    {
+        return "best";
+    }
+
+    @GetMapping("/register")
+    public String registerPage()
+    {
+        return "register/signUpForm";
+    }
+
+    @GetMapping("/login")
+    public String loginPage()
+    {
+        return "register/loginForm";
+    }
 }
