@@ -31,42 +31,42 @@
 <!-- CENTER MENU BAR -->
 <div>
     <div class="jumbotron text-center" style="background: transparent;">
-        <form class="form-horizontal">
+        <form class="form-horizontal" th:action="@{/regsuccess}" th:object="${UserObject}" method="post">
             <fieldset>
                 <div id="legend">
                     <legend class="">Register</legend>
                 </div>
                 <div class="control-group">
                     <!-- Username -->
-                    <label class="control-label"  for="username">Username</label>
+                    <label class="control-label">Username</label>
                     <div class="controls">
-                        <input type="text" id="username" name="username" placeholder="" class="input-xlarge"/>
+                        <input type="text" class="input-xlarge" th:field="*{username}"/>
                         <p class="help-block">Username can contain any letters or numbers, without spaces</p>
                     </div>
                 </div>
                 <hr/>
                 <div class="control-group">
                     <!-- E-mail -->
-                    <label class="control-label" for="email">E-mail</label>
+                    <label class="control-label">E-mail</label>
                     <div class="controls">
-                        <input type="text" id="email" name="email" placeholder="" class="input-xlarge"/>
+                        <input type="text" class="input-xlarge" th:field="*{email}"/>
                         <p class="help-block">Please provide your E-mail</p>
                     </div>
                 </div>
                 <hr/>
                 <div class="control-group">
                     <!-- Password-->
-                    <label class="control-label" for="password">Password</label>
+                    <label class="control-label">Password</label>
                     <div class="controls">
-                        <input type="password" id="password" name="password" placeholder="" class="input-xlarge"/>
-                        <p class="help-block">Password should be at least 4 characters</p>
+                        <input type="password" class="input-xlarge" th:field="*{password}"/>
+                        <p class="help-block">It should contain number and symbols</p>
                     </div>
                 </div>
                 <hr/>
                 <div class="control-group">
                     <!-- Button -->
                     <div class="controls">
-                        <button class="btn btn-primary btn-fill"><b>Register</b></button>
+                        <input type="submit" class="btn btn-primary btn-fill" value="Register"/>
                     </div>
                 </div>
             </fieldset>
