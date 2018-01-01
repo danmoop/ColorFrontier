@@ -1,5 +1,9 @@
 package com.colorfrontier.MainApp.Model;
 
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "user_data")
 public class User
 {
     private String username;
