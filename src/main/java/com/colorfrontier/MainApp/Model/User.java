@@ -1,15 +1,20 @@
 package com.colorfrontier.MainApp.Model;
 
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "user_data")
+import java.util.Set;
+
+@Document(collection = "users")
 public class User
 {
     private String username;
     private String email;
     private String password;
     private Boolean banned;
+
+    private Set<Project> projects;
 
     public void setUsername(String username) {
         this.username = username;
@@ -32,6 +37,23 @@ public class User
         return username;
     }
 
+    public User(String username, String email, String password, Boolean banned, Set<Project> projects) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.banned = banned;
+        this.projects = projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
+    }
+
+    public Set<Project> getProjects() {
+
+        return projects;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -42,14 +64,6 @@ public class User
 
     public Boolean getBanned() {
         return banned;
-    }
-
-    public User(String username, String email, String password, Boolean banned) {
-
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.banned = banned;
     }
 
     public User() {}

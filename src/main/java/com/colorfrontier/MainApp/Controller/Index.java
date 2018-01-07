@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashSet;
 
 @Controller
 public class Index
@@ -68,7 +69,7 @@ public class Index
         System.out.println("Password: " + user.getPassword());
 
         registerInterface.save(
-                new User(user.getUsername(), user.getEmail(), user.getPassword(), false
+            new User(user.getUsername(), user.getEmail(), user.getPassword(), false, new HashSet<>()
         ));
 
         return "register/register_success";
