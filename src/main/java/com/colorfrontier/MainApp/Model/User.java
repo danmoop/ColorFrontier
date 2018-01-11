@@ -1,19 +1,38 @@
 package com.colorfrontier.MainApp.Model;
 
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Document(collection = "users")
 public class User
 {
+    @NotEmpty
+    @NotNull
     private String username;
+
+
+    @NotEmpty
+    @NotNull
     private String email;
+
+
+    @NotEmpty
+    @NotNull
     private String password;
+
+
+    @NotEmpty
+    @NotNull
     private Boolean banned;
 
+
+    @NotEmpty
+    @NotNull
     private Set<Project> projects;
 
     public void setUsername(String username) {
