@@ -3,9 +3,14 @@ package com.colorfrontier.MainApp.Controller;
 import com.colorfrontier.MainApp.Model.User;
 import com.colorfrontier.MainApp.Service.RegisterService.RegisterInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @Controller
 public class LoginController
@@ -13,18 +18,28 @@ public class LoginController
     @Autowired
     RegisterInterface registerInterface;
 
+    MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+
+    public LoginController() throws NoSuchAlgorithmException {}
+
     @PostMapping("/")
-    public String loginSuccess(Model model, User user)
+    public String loginProcess(Model model, User user)
     {
         User userInDb = registerInterface.findByUsername(user.getUsername());
 
-        if(user.getPassword().equals(userInDb.getPassword()) && !userInDb.getBanned())
+        String input = user.getPassword();
+        byte[] md5sum = messageDigest.digest(input.getBytes());
+        String output = String.format("%032X", new BigInteger(1, md5sum));
+
+        String md5Password = output.toLowerCase();
+
+        if(userInDb != null && md5Password.equals(userInDb.getPassword()) && !userInDb.getBanned())
         {
             System.out.println("LOGGED IN SUCCESSFULLY");
             return "sections/index";
         }
 
-        else if (userInDb.getBanned())
+        else if (userInDb != null && userInDb.getBanned() && md5Password.equals(userInDb.getPassword()))
         {
             return "misc/youarebanned";
         }

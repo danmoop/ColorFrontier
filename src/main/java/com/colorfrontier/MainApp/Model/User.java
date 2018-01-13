@@ -2,7 +2,6 @@ package com.colorfrontier.MainApp.Model;
 
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
@@ -64,13 +63,14 @@ public class User
         this.projects = projects;
     }
 
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
-    }
-
     public Set<Project> getProjects() {
 
         return projects;
+    }
+
+    public void addProject(Project project)
+    {
+        projects.add(project);
     }
 
     public String getEmail() {

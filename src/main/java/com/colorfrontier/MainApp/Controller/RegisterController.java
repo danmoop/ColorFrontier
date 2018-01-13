@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 
@@ -16,17 +18,34 @@ public class RegisterController
     @Autowired
     RegisterInterface registerInterface;
 
+    MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+
+    public RegisterController() throws NoSuchAlgorithmException {}
+
     @PostMapping("/regsuccess")
     public String regSuccessPost(Model model, User user) throws NoSuchAlgorithmException {
-        System.out.println("");
-        System.out.println("Email: " + user.getEmail());
-        System.out.println("Username: " + user.getUsername());
-        System.out.println("Password: " + user.getPassword());
 
-        registerInterface.save(
-            new User(user.getUsername(), user.getEmail(), user.getPassword(), false, new HashSet<>()
-        ));
+        User existingUser = registerInterface.findByUsername(user.getUsername());
 
-        return "register/register_success";
+        if(existingUser == null)
+        {
+
+            String input = user.getPassword();
+            byte[] md5sum = messageDigest.digest(input.getBytes());
+            String output = String.format("%032X", new BigInteger(1, md5sum));
+
+            String md5Password = output.toLowerCase();
+
+            registerInterface.save(
+                new User(user.getUsername(), user.getEmail(), md5Password, false, new HashSet<>()
+            ));
+
+            return "register/register_success";
+        }
+
+        else
+        {
+            return "misc/accexists";
+        }
     }
 }
