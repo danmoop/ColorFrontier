@@ -3,16 +3,19 @@ package com.colorfrontier.MainApp.Controller;
 import com.colorfrontier.MainApp.Model.User;
 import com.colorfrontier.MainApp.Service.RegisterService.RegisterInterface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 @Controller
+@SessionAttributes(value = "LoggedUser")
 public class LoginController
 {
     @Autowired
@@ -23,7 +26,7 @@ public class LoginController
     public LoginController() throws NoSuchAlgorithmException {}
 
     @PostMapping("/")
-    public String loginProcess(Model model, User user)
+    public ModelAndView loginProcess(Model model, User user)
     {
         User userInDb = registerInterface.findByUsername(user.getUsername());
 
@@ -35,19 +38,38 @@ public class LoginController
 
         if(userInDb != null && md5Password.equals(userInDb.getPassword()) && !userInDb.getBanned())
         {
-            System.out.println("LOGGED IN SUCCESSFULLY");
-            return "sections/index";
+            ModelAndView indexPage = new ModelAndView();
+            model.addAttribute("LoggedUser", userInDb);
+            indexPage.setViewName("redirect:/");
+
+            return indexPage; // redirect to home page
         }
 
         else if (userInDb != null && userInDb.getBanned() && md5Password.equals(userInDb.getPassword()))
         {
-            return "misc/youarebanned";
+            ModelAndView youarebanned = new ModelAndView();
+            youarebanned.setViewName("misc/youarebanned");
+            return youarebanned;
         }
 
         else
         {
-            return "login/loginfailed";
+            ModelAndView loginfailed = new ModelAndView();
+            loginfailed.setViewName("login/loginfailed");
+            return loginfailed;
         }
 
+    }
+
+    @PostMapping("/logout")
+    public ModelAndView logoutPage(SessionStatus sessionStatus)
+    {
+        sessionStatus.setComplete();
+
+        ModelAndView logout = new ModelAndView();
+
+        logout.setViewName("redirect:/");
+
+        return logout;
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="../css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../css/font-awesome.css"/>
@@ -16,14 +16,42 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="/" style="color: #fff;">ColorFrontier</a>
             </div>
-            <div class="centermenu">
-                <ul class="nav navbar-nav">
-                    <a href="/register"><button class="btn btn-primary btn-fill"><b>Register</b></button></a>
-                </ul>
+
+
+            <div th:if="${LoggedUser.username == null}">
+                <div class="centermenu">
+                    <ul class="nav navbar-nav">
+                        <span class="white-txt" style="padding-right: 15px;">Hello, Guest</span>
+                        <a href="/register"><button class="btn btn-primary btn-fill"><b>Register</b></button></a>
+                    </ul>
+                </div>
+                <div style="float:right;">
+                    <a class="navbar-brand white-txt" href="/login">Login</a>
+                </div>
             </div>
-            <div style="float:right;">
-                <a class="navbar-brand white-txt" href="/login">Log In</a>
+
+            <div th:if="${LoggedUser != null} ? ${LoggedUser.username}">
+                <div class="centermenu">
+                    <ul class="nav navbar-nav">
+                        <br/>
+                        <span class="white-txt" style="padding-right: 15px;" th:utext=" 'Hello, ' + ${LoggedUser.username}"></span>
+                    </ul>
+                </div>
+                <div style="float:right;">
+                    <form th:action="@{/logout}" method="post">
+                        <br/>
+                        <input type="submit" value="Logout" style="
+                            background-color: transparent;
+                            color: white;
+                            border: 0;
+                            font-weight: bold;
+                            font-size: 20px;"/>
+                    </form>
+                </div>
             </div>
+
+
+
         </div>
     </nav>
     <!-- NAVIGATION END -->

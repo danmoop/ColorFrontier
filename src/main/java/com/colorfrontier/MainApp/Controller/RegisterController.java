@@ -37,7 +37,8 @@ public class RegisterController
             String md5Password = output.toLowerCase();
 
             registerInterface.save(
-                new User(user.getUsername(), user.getEmail(), md5Password, false, new HashSet<>()
+                new User(
+                   user.getUsername(), user.getEmail(), md5Password, false, new HashSet<>(), "User"
             ));
 
             return "register/register_success";

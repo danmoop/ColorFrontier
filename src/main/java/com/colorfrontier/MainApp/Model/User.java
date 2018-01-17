@@ -10,29 +10,20 @@ import java.util.Set;
 @Document(collection = "users")
 public class User
 {
-    @NotEmpty
-    @NotNull
     private String username;
-
-
-    @NotEmpty
-    @NotNull
     private String email;
-
-
-    @NotEmpty
-    @NotNull
     private String password;
-
-
-    @NotEmpty
-    @NotNull
     private Boolean banned;
-
-
-    @NotEmpty
-    @NotNull
     private Set<Project> projects;
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -55,12 +46,13 @@ public class User
         return username;
     }
 
-    public User(String username, String email, String password, Boolean banned, Set<Project> projects) {
+    public User(String username, String email, String password, Boolean banned, Set<Project> projects, String role) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.banned = banned;
         this.projects = projects;
+        this.role = role;
     }
 
     public Set<Project> getProjects() {

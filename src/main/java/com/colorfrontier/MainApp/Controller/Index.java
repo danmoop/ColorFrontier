@@ -7,9 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 import java.security.NoSuchAlgorithmException;
 
 @Controller
+@SessionAttributes(value = "LoggedUser")
+
 public class Index
 {
 
@@ -22,10 +29,33 @@ public class Index
     public Index() throws NoSuchAlgorithmException {
     }
 
-    @GetMapping("/")
-    public String index()
+    @GetMapping("/dashboard")
+    public ModelAndView dashboard(Model model, @ModelAttribute(value = "LoggedUser") User user, HttpServletRequest request)
     {
-        return "sections/index";
+        ModelAndView dashboard = new ModelAndView();
+        model.addAttribute("LoggedUser", user);
+        dashboard.setViewName("sections/dashboard");
+
+        return dashboard;
+    }
+
+    @GetMapping("/")
+    public ModelAndView index(Model model, @ModelAttribute(value = "LoggedUser") User user, HttpServletRequest request)
+    {
+        model.addAttribute("LoggedUser", user);
+
+        User loggedUser = (User) request.getSession().getAttribute("LoggedUser");
+
+        ModelAndView indexPage = new ModelAndView();
+
+        indexPage.setViewName("sections/index");
+
+        return indexPage;
+    }
+
+    @ModelAttribute(value = "LoggedUser")
+    public User nullUser() {
+        return new User();
     }
 
     @GetMapping("/categories")
