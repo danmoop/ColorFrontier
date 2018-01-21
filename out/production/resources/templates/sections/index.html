@@ -5,10 +5,11 @@
     <link rel="stylesheet" href="../css/font-awesome.css"/>
     <link rel="stylesheet" href="../css/gsdk.css"/>
     <link rel="stylesheet" href="../css/main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Biryani:900" rel="stylesheet"/>
     <meta charset="UTF-8"/>
     <title>ColorFrontier - Home</title>
 </head>
-<body>
+<body style="overflow-x: hidden; background-color: rgb(230,230,230);">
 
     <!-- NAVIGATION -->
     <nav class="navbar navbar-inverse">
@@ -34,19 +35,35 @@
                 <div class="centermenu">
                     <ul class="nav navbar-nav">
                         <br/>
-                        <span class="white-txt" style="padding-right: 15px;" th:utext=" 'Hello, ' + ${LoggedUser.username}"></span>
+                        <h6 class="white-txt" style="padding-right: 15px;" th:utext=" 'Hello, ' + ${LoggedUser.username}"></h6>
                     </ul>
                 </div>
                 <div style="float:right;">
-                    <form th:action="@{/logout}" method="post">
-                        <br/>
-                        <input type="submit" value="Logout" style="
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <form th:action="@{/openDashboard}" method="post">
+                                <br/>
+                                <input type="submit" value="My Profile" style="
+                            background-color: transparent;
+                            color: white;
+                            border: 0;
+                            font-weight: bold;
+                            font-size: 20px;
+                            padding-right: 100px;"/>
+                            </form>
+                        </div>
+                        <div class="col-sm-6">
+                            <form th:action="@{/logout}" method="post">
+                                <br/>
+                                <input type="submit" value="Logout" style="
                             background-color: transparent;
                             color: white;
                             border: 0;
                             font-weight: bold;
                             font-size: 20px;"/>
-                    </form>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -58,7 +75,7 @@
 
     <!-- PICTURE BACKGROUND -->
     <div class="jumbotron picture-bg text-center">
-        <h1 class="white-txt">DEMONSTRATE YOUR CREATIVE SKILLS</h1>
+        <h1 class="white-txt" style="font-family: Biryani;">DEMONSTRATE YOUR CREATIVE SKILLS</h1>
     </div>
     <!-- PICTURE BACKGROUND END-->
 

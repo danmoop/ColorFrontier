@@ -38,7 +38,11 @@ public class RegisterController
 
             registerInterface.save(
                 new User(
-                   user.getUsername(), user.getEmail(), md5Password, false, new HashSet<>(), "User"
+                   user.getUsername(),
+                        user.getEmail(),
+                        md5Password,
+                        false, new HashSet<>(),
+                        "User", 0
             ));
 
             return "register/register_success";

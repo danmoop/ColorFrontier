@@ -1,10 +1,8 @@
 package com.colorfrontier.MainApp.Model;
 
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Document(collection = "users")
@@ -16,6 +14,7 @@ public class User
     private Boolean banned;
     private Set<Project> projects;
     private String role;
+    private int totalLikes;
 
     public String getRole() {
         return role;
@@ -27,6 +26,16 @@ public class User
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setTotalLikes(int totalLikes)
+    {
+        this.totalLikes = totalLikes;
+    }
+
+    public int getTotalLikes()
+    {
+        return totalLikes;
     }
 
     public void setEmail(String email) {
@@ -46,13 +55,15 @@ public class User
         return username;
     }
 
-    public User(String username, String email, String password, Boolean banned, Set<Project> projects, String role) {
+    public User(String username, String email, String password, Boolean banned, Set<Project> projects, String role, int totalLikes)
+    {
         this.username = username;
         this.email = email;
         this.password = password;
         this.banned = banned;
         this.projects = projects;
         this.role = role;
+        this.totalLikes = totalLikes;
     }
 
     public Set<Project> getProjects() {
