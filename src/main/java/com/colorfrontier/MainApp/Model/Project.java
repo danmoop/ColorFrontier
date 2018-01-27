@@ -7,8 +7,14 @@ public class Project
     private String title;
     private User author;
     private String short_description;
+    private String content;
     private Set<Comment> comments;
     private int likes;
+
+    public void setContent(String content)
+    {
+        this.content = content;
+    }
 
     public Set<Comment> getComments()
     {
@@ -22,13 +28,24 @@ public class Project
 
     public Project() {}
 
-    public Project(String title, User author, String short_description, Set<Comment> comments)
+    public String getContent()
+    {
+        return content;
+    }
+
+    public int getLikes()
+    {
+        return likes;
+    }
+
+    public Project(String title, User author, String short_description, String content, Set<Comment> comments, int likes)
     {
         this.title = title;
         this.author = author;
         this.short_description = short_description;
+        this.content = content;
         this.comments = comments;
-        this.likes = 0;
+        this.likes = likes;
     }
 
     public void setTitle(String title)

@@ -2,6 +2,7 @@ package com.colorfrontier.MainApp.Controller;
 
 import com.colorfrontier.MainApp.Model.Project;
 import com.colorfrontier.MainApp.Model.User;
+import com.colorfrontier.MainApp.Service.ProjectService;
 import com.colorfrontier.MainApp.Service.RegisterService.RegisterInterface;
 import com.colorfrontier.MainApp.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashSet;
 
 @Controller
 @SessionAttributes(value = "LoggedUser")
@@ -28,6 +28,9 @@ public class Index
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    ProjectService projectService;
 
     public Index() throws NoSuchAlgorithmException {
     }
@@ -101,12 +104,33 @@ public class Index
     {
         if(user.getUsername() != null && user.getRole().equals("Admin"))
         {
-                return new ModelAndView("misc/admin");
+            model.addAttribute("awaitingProject", projectService.getAwaitingProjects());
+            return new ModelAndView("misc/admin");
         }
 
         else
         {
             return new ModelAndView("redirect:/");
+        }
+    }
+
+    @GetMapping("/addproject")
+    public ModelAndView addProject(Model model, @ModelAttribute("LoggedUser") User user)
+    {
+        ModelAndView page = new ModelAndView();
+
+        if (user.getUsername() == null)
+        {
+            page.setViewName("redirect:/");
+            return page;
+        }
+
+        else
+        {
+            model.addAttribute("LoggedUser", user);
+            model.addAttribute("ProjectObject", new Project());
+            page.setViewName("sections/addnewproject");
+            return page;
         }
     }
 

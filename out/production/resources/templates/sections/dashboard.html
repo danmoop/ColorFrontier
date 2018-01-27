@@ -81,7 +81,7 @@
                 <h4>Your projects</h4>
                     <div th:if="${#lists.size(LoggedUser.projects) == 0}">
                         <h3>You don't have any project yet</h3>
-                        <a href="/">
+                        <a href="/addproject">
                             <button class="btn btn-primary btn-fill">
                                 <b>Add a new project</b>
                             </button>
