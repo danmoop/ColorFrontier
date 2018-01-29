@@ -96,5 +96,17 @@
         </div>
     <!-- CENTER MENU BAR END-->
 
+<div class="jumbotron text-center">
+    <div class="row">
+        <div th:each="project: ${Projects}">
+            <div class="col-sm-4 shadow-card" style="width: 30%; margin: 10px; padding-top: 20px; padding-bottom:20px;">
+                <h3 th:inline="text"><b>[[${project.title}]]</b></h3>
+                <h3 th:inline="text"><a>[[${project.author.username}]]</a></h3>
+                <h5 th:text="${project.short_description}"></h5>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

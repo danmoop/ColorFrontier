@@ -2,7 +2,7 @@ package com.colorfrontier.MainApp.Controller;
 
 import com.colorfrontier.MainApp.Model.Project;
 import com.colorfrontier.MainApp.Model.User;
-import com.colorfrontier.MainApp.Service.ProjectService;
+import com.colorfrontier.MainApp.Service.ProjectInterface;
 import com.colorfrontier.MainApp.Service.RegisterService.RegisterInterface;
 import com.colorfrontier.MainApp.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +27,10 @@ public class Index
     RegisterInterface registerInterface;
 
     @Autowired
-    UserService userService;
+    ProjectInterface projectInterface;
 
     @Autowired
-    ProjectService projectService;
+    UserService userService;
 
     public Index() throws NoSuchAlgorithmException {
     }
@@ -58,12 +58,15 @@ public class Index
     public ModelAndView index(Model model, @ModelAttribute(value = "LoggedUser") User user, HttpServletRequest request)
     {
         model.addAttribute("LoggedUser", user);
+        model.addAttribute("Projects", projectInterface.findAll());
 
         User loggedUser = (User) request.getSession().getAttribute("LoggedUser");
 
         ModelAndView indexPage = new ModelAndView();
 
         indexPage.setViewName("sections/index");
+
+        System.out.println(projectInterface.findAll());
 
         return indexPage;
     }
@@ -104,7 +107,6 @@ public class Index
     {
         if(user.getUsername() != null && user.getRole().equals("Admin"))
         {
-            model.addAttribute("awaitingProject", projectService.getAwaitingProjects());
             return new ModelAndView("misc/admin");
         }
 

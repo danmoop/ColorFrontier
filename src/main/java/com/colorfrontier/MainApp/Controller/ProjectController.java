@@ -3,7 +3,7 @@ package com.colorfrontier.MainApp.Controller;
 
 import com.colorfrontier.MainApp.Model.Project;
 import com.colorfrontier.MainApp.Model.User;
-import com.colorfrontier.MainApp.Service.ProjectService;
+import com.colorfrontier.MainApp.Service.ProjectInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,24 +19,19 @@ import java.util.HashSet;
 public class ProjectController
 {
     @Autowired
-    ProjectService projectService;
+    ProjectInterface projectInterface;
 
     @PostMapping("/submitProject")
     public ModelAndView addedProject(Model model, Project project, @ModelAttribute("LoggedUser") User user)
     {
-        System.out.println(project.getTitle());
-        System.out.println(user.getUsername());
-        System.out.println(project.getShort_description());
-        System.out.println(project.getContent());
-
-        projectService.newProjectForReview(new Project(
+        projectInterface.save(new Project(
                 project.getTitle(),
                 user,
                 project.getShort_description(),
                 project.getContent(),
-                new HashSet<>(),
-                0)
-        );
+                project.getComments(),
+                0
+        ));
 
         return new ModelAndView("redirect:/");
     }
