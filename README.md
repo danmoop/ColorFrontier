@@ -17,5 +17,8 @@ Resources folder(not src) - has .html and .css files(also images). In Spring str
 
 What am I planning to do: 
 1. Sorting project to categories. I should add option to /addproject form(this option will have all the categories and user just chooses which he needs exactly). For now every project is only text. I want to add a possibility to add images, videos and maybe something else(like gif etc.). For this I need to create page where you can drag-and-drop elements to the page to make your project seem better. Then every project should have it's own page. Like on Youtube video. Not just preview, but the entire content.
+2. Commenting other projects.
+3. Like other projects.
+4. And improve design.
 
 I hope you're interested in taking part in development, maybe we will work on this together!
