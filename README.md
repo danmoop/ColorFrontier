@@ -22,3 +22,5 @@ What am I planning to do:
 4. And improve design.
 
 I hope you're interested in taking part in development, maybe we will work on this together!
+
+![img](Preview.png)
