@@ -1,4 +1,4 @@
-package com.colorfrontier.MainApp.Service.RegisterService;
+package com.colorfrontier.MainApp.Service;
 
 import com.colorfrontier.MainApp.Model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;

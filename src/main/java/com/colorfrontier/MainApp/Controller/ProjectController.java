@@ -4,7 +4,7 @@ package com.colorfrontier.MainApp.Controller;
 import com.colorfrontier.MainApp.Model.Project;
 import com.colorfrontier.MainApp.Model.User;
 import com.colorfrontier.MainApp.Service.ProjectInterface;
-import com.colorfrontier.MainApp.Service.RegisterService.RegisterInterface;
+import com.colorfrontier.MainApp.Service.RegisterInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.HashSet;
 
 @Controller
 @SessionAttributes(value = "LoggedUser")
@@ -44,6 +42,22 @@ public class ProjectController
 
         registerInterface.save(user1);
 
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/dashboard");
+    }
+
+    @PostMapping("/deleteProject")
+    public ModelAndView deleteProject(@ModelAttribute Project project, Model model, @ModelAttribute("LoggedUser") User user)
+    {
+        Project ProjectFromDB = projectInterface.findByTitle(project.getTitle());
+
+        projectInterface.delete(ProjectFromDB);
+
+        User userFromDB = registerInterface.findByUsername(user.getUsername());
+
+        userFromDB.deleteProject(ProjectFromDB);
+
+        registerInterface.save(userFromDB);
+
+        return new ModelAndView("redirect:/dashboard");
     }
 }

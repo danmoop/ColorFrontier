@@ -10,6 +10,7 @@ import java.util.Set;
 public class User
 {
     @Id
+    private String id;
     private String username;
     private String email;
     private String password;
@@ -76,6 +77,17 @@ public class User
     public void addProject(Project project)
     {
         projects.add(project);
+    }
+
+    public void deleteProject(Project project)
+    {
+        for(int i = 0; i < projects.size(); i++)
+        {
+            if (project.getTitle().equals(projects.iterator().next().getTitle()))
+            {
+                projects.remove(projects.iterator().next());
+            }
+        }
     }
 
     public String getEmail() {

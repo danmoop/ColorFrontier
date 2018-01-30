@@ -1,7 +1,7 @@
 package com.colorfrontier.MainApp.Controller;
 
 import com.colorfrontier.MainApp.Model.User;
-import com.colorfrontier.MainApp.Service.RegisterService.RegisterInterface;
+import com.colorfrontier.MainApp.Service.RegisterInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

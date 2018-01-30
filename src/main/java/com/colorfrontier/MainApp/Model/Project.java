@@ -1,5 +1,6 @@
 package com.colorfrontier.MainApp.Model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Set;
@@ -7,6 +8,8 @@ import java.util.Set;
 @Document(collection = "projects")
 public class Project
 {
+    @Id
+    private String id;
     private String title;
     private User author;
     private String short_description;
