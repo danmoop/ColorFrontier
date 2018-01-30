@@ -92,6 +92,21 @@
                             After publishing your projects they will be displayed here. Just click on them to proceed to your project's page to see comments, and how many people have viewed your project.
                         </h5>
                     </div>
+                    <div th:if="${#lists.size(LoggedUser.projects) != 0}">
+                        <div class="row">
+                            <div th:each="project: ${UserProjects}">
+                                <div class="col-sm-4 shadow-card" style="margin: 30px; padding-top: 20px; padding-bottom:20px;">
+                                    <h3 th:inline="text"><b>[[${project.title}]]</b></h3>
+                                    <h5 th:text="${project.short_description}"></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/addproject">
+                            <button class="btn btn-primary btn-fill" style="margin: 15px;">
+                                <b>Add a new project</b>
+                            </button>
+                        </a>
+                    </div>
             </div>
         </div>
     </div>

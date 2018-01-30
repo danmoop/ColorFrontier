@@ -1,6 +1,7 @@
 package com.colorfrontier.MainApp.Model;
 
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Set;
@@ -8,6 +9,7 @@ import java.util.Set;
 @Document(collection = "users")
 public class User
 {
+    @Id
     private String username;
     private String email;
     private String password;

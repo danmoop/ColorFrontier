@@ -39,7 +39,8 @@ public class Index
     public ModelAndView dashboard(Model model, @ModelAttribute(value = "LoggedUser") User user, HttpServletRequest request)
     {
         ModelAndView dashboard = new ModelAndView();
-        model.addAttribute("LoggedUser", user);
+        model.addAttribute("LoggedUser", registerInterface.findByUsername(user.getUsername()));
+        model.addAttribute("UserProjects", registerInterface.findByUsername(user.getUsername()).getProjects());
 
         if(user.getUsername() == null)
         {
@@ -65,8 +66,6 @@ public class Index
         ModelAndView indexPage = new ModelAndView();
 
         indexPage.setViewName("sections/index");
-
-        System.out.println(projectInterface.findAll());
 
         return indexPage;
     }
