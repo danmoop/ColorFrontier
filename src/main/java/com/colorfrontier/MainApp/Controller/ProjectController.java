@@ -8,9 +8,7 @@ import com.colorfrontier.MainApp.Service.RegisterInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -59,5 +57,13 @@ public class ProjectController
         registerInterface.save(userFromDB);
 
         return new ModelAndView("redirect:/dashboard");
+    }
+
+    @GetMapping("/{title}")
+    public ModelAndView projectPage(@PathVariable String title, Model model)
+    {
+        model.addAttribute("Project", projectInterface.findByTitle(title));
+
+        return new ModelAndView("sections/projectPage");
     }
 }

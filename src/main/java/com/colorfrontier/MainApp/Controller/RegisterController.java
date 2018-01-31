@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 @Controller
@@ -41,7 +42,7 @@ public class RegisterController
                    user.getUsername(),
                         user.getEmail(),
                         md5Password,
-                        false, new HashSet<>(),
+                        false, new ArrayList<>(),
                         "User", 0
             ));
 

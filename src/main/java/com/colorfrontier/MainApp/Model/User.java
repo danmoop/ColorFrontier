@@ -4,7 +4,7 @@ package com.colorfrontier.MainApp.Model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Set;
+import java.util.List;
 
 @Document(collection = "users")
 public class User
@@ -15,7 +15,7 @@ public class User
     private String email;
     private String password;
     private Boolean banned;
-    private Set<Project> projects;
+    private List<Project> projects;
     private String role;
     private int totalLikes;
 
@@ -58,7 +58,7 @@ public class User
         return username;
     }
 
-    public User(String username, String email, String password, Boolean banned, Set<Project> projects, String role, int totalLikes)
+    public User(String username, String email, String password, Boolean banned, List<Project> projects, String role, int totalLikes)
     {
         this.username = username;
         this.email = email;
@@ -69,7 +69,7 @@ public class User
         this.totalLikes = totalLikes;
     }
 
-    public Set<Project> getProjects() {
+    public List<Project> getProjects() {
 
         return projects;
     }
@@ -83,9 +83,11 @@ public class User
     {
         for(int i = 0; i < projects.size(); i++)
         {
-            if (project.getTitle().equals(projects.iterator().next().getTitle()))
+            if(project.getTitle().equals(projects.get(i).getTitle())
+                    && project.getShort_description().equals(projects.get(i).getShort_description())
+                    && project.getAuthor().getUsername().equals(projects.get(i).getAuthor().getUsername()))
             {
-                projects.remove(projects.iterator().next());
+                projects.remove(i);
             }
         }
     }
