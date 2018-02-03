@@ -1,124 +1,114 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
-    <meta charset="UTF-8"/>
-    <title>ColorFrontier - Dashboard</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../css/font-awesome.css"/>
-    <link rel="stylesheet" href="../css/gsdk.css"/>
-    <link rel="stylesheet" href="../css/main.css"/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png"/>
+    <title>ProjectHideout - Dashboard</title>
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet"/>
+    <link href="/plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet"/>
+    <link href="/plugins/bower_components/morrisjs/morris.css" rel="stylesheet"/>
+    <link href="/plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet"/>
+    <link href="/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet"/>
+    <link href="css/animate.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/colors/default.css" id="theme" rel="stylesheet"/>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
-<body style="overflow-x: hidden; background-color: rgb(249, 249, 249);">
 
-<!-- NAVIGATION -->
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/" style="color: #fff;">ColorFrontier</a>
-        </div>
-        <div th:if="${LoggedUser.username == null}">
-            <div class="centermenu">
-                <ul class="nav navbar-nav">
-                    <span class="white-txt" style="padding-right: 15px;">Hello, Guest</span>
-                    <a href="/register"><button class="btn btn-primary btn-fill"><b>Register</b></button></a>
+<body class="fix-header">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header">
+                <ul class="nav navbar-top-links navbar-right pull-left">
+                    <li>
+                    </li>
+                    <li>
+                        <a href="/"><b class="hidden-xs">ProjectHideout</b></a>
+                    </li>
                 </ul>
             </div>
-            <div style="float:right;">
-                <a class="navbar-brand white-txt" href="/login">Login</a>
-            </div>
-        </div>
-
-        <div th:if="${LoggedUser != null} ? ${LoggedUser.username}">
-            <div class="centermenu">
-                <ul class="nav navbar-nav">
-                    <br/>
-                    <h6 class="white-txt" style="padding-right: 15px;" th:utext=" 'Hello, ' + ${LoggedUser.username}"></h6>
-                </ul>
-            </div>
-            <div style="float:right;">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <form th:action="@{/openDashboard}" method="post">
-                            <br/>
-                            <input type="submit" value="My Profile" style="
-                            background-color: transparent;
-                            color: white;
-                            border: 0;
-                            font-weight: bold;
-                            font-size: 20px;
-                            padding-right: 100px;"/>
-                        </form>
+        </nav>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <h4 class="page-title" th:inline="text">Hello, [[${LoggedUser.username}]]</h4></div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     </div>
-                    <div class="col-sm-6">
-                        <form th:action="@{/logout}" method="post">
-                            <br/>
-                            <input type="submit" value="Logout" style="
-                            background-color: transparent;
-                            color: white;
-                            border: 0;
-                            font-weight: bold;
-                            font-size: 20px;"/>
-                        </form>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Total Projects</h3>
+                            <ul class="list-inline two-part">
+                                <li>
+                                    <div id="sparklinedash"></div>
+                                </li>
+                                <li class="text-right">
+                                    <i class="ti-arrow-up text-success"></i>
+                                    <span class="counter text-success" th:inline="text">[[${#lists.size(LoggedUser.projects)}]]</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Total Likes</h3>
+                            <ul class="list-inline two-part">
+                                <li>
+                                    <div id="sparklinedash2"></div>
+                                </li>
+                                <li class="text-right">
+                                    <i class="ti-arrow-up text-purple"></i>
+                                    <span class="counter text-purple" th:inline="text">[[${LoggedUser.totallikes}]]</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Total projects views</h3>
+                            <ul class="list-inline two-part">
+                                <li>
+                                    <div id="sparklinedash3"></div>
+                                </li>
+                                <li class="text-right">
+                                    <i class="ti-arrow-up text-info"></i>
+                                    <span class="counter text-info" th:inline="text">[[${LoggedUser.totalviews}]]</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <div class="white-box">
+
+                        </div>
                     </div>
                 </div>
             </div>
+            <footer class="footer text-center"> ProjectHideout </footer>
         </div>
     </div>
-</nav>
-
-
-    <div class="jumbotron" style="background: transparent;">
-
-        <div class="row">
-            <div class="col-sm-3 text-center shadow-card">
-                <h4 th:text="${LoggedUser.username}"></h4>
-                <h4 th:text="${LoggedUser.email}"></h4>
-                <hr/>
-                <h4 th:text="'Total like amount: ' + ${LoggedUser.totalLikes}"></h4>
-            </div>
-            <div class="col-sm-1"></div>
-            <div class="col-sm-8 text-center shadow-card">
-                <h4>Your projects</h4>
-                    <div th:if="${#lists.size(LoggedUser.projects) == 0}">
-                        <h3>You don't have any project yet</h3>
-                        <a href="/addproject">
-                            <button class="btn btn-primary btn-fill">
-                                <b>Add a new project</b>
-                            </button>
-                        </a>
-                        <br/>
-                        <br/>
-                        <h5>
-                            After publishing your projects they will be displayed here. Just click on them to proceed to your project's page to see comments, and how many people have viewed your project.
-                        </h5>
-                    </div>
-                    <div th:if="${#lists.size(LoggedUser.projects) != 0}">
-                        <div class="row">
-                            <div th:each="project: ${UserProjects}">
-                                <div class="col-sm-4 shadow-card" style="margin: 30px; padding-top: 20px; padding-bottom:20px;">
-                                    <a th:href="${'/'+project.title}"><h3 th:inline="text"><b>[[${project.title}]]</b></h3></a>
-                                    <a th:href="${'/'+project.title}"><h5 th:text="${project.short_description}"></h5></a>
-                                    <form th:action="@{/deleteProject}" th:object="${project}" method="post">
-                                        <input type="hidden" th:name="title" th:value="${project.title}"/>
-                                        <input type="hidden" th:name="author" th:value="${project.author}"/>
-                                        <input type="hidden" th:name="short_description" th:value="${project.short_description}"/>
-                                        <input type="hidden" th:name="content" th:value="${project.content}"/>
-                                        <input type="hidden" th:name="comments" th:value="${project.comments}"/>
-                                        <input type="hidden" th:name="likes" th:value="${project.likes}"/>
-                                        <input type="submit"  th:value="Delete"/>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="/addproject">
-                            <button class="btn btn-primary btn-fill" style="margin: 15px;">
-                                <b>Add a new project</b>
-                            </button>
-                        </a>
-                    </div>
-            </div>
-        </div>
-    </div>
-
+    <script src="../plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/jquery.slimscroll.js"></script>
+    <script src="js/custom.min.js"></script>
 </body>
+
 </html>

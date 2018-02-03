@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png"/>
+    <title>ProjectHideout - Dashboard</title>
+    <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet"/>
+    <link href="../plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet"/>
+    <link href="../plugins/bower_components/morrisjs/morris.css" rel="stylesheet"/>
+    <link href="../plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet"/>
+    <link href="../plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet"/>
+    <link href="../css/animate.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+    <link href="../css/colors/default.css" id="theme" rel="stylesheet"/>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body class="fix-header">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header">
+                <ul class="nav navbar-top-links navbar-right pull-left">
+                    <li>
+                    </li>
+                    <li>
+                        <a href="/"><b class="hidden-xs">ProjectHideout</b></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                            <h4 class="page-title" th:inline="text">[[${UserObject.username}]]'s Profile</h4></div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Total Projects</h3>
+                            <ul class="list-inline two-part">
+                                <li>
+                                    <div id="sparklinedash"></div>
+                                </li>
+                                <li class="text-right">
+                                    <i class="ti-arrow-up text-success"></i>
+                                    <span class="counter text-success" th:inline="text">[[${#lists.size(UserObject.projects)}]]</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Total Likes</h3>
+                            <ul class="list-inline two-part">
+                                <li>
+                                    <div id="sparklinedash2"></div>
+                                </li>
+                                <li class="text-right">
+                                    <i class="ti-arrow-up text-purple"></i>
+                                    <span class="counter text-purple" th:inline="text">[[${UserObject.totallikes}]]</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Total projects views</h3>
+                            <ul class="list-inline two-part">
+                                <li>
+                                    <div id="sparklinedash3"></div>
+                                </li>
+                                <li class="text-right">
+                                    <i class="ti-arrow-up text-info"></i>
+                                    <span class="counter text-info" th:inline="text">[[${UserObject.totalviews}]]</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <div class="white-box">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer text-center"> ProjectHideout </footer>
+        </div>
+    </div>
+    <script src="../plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.slimscroll.js"></script>
+    <script src="../js/custom.min.js"></script>
+</body>
+
+</html>
