@@ -1,4 +1,5 @@
 # ColorFrontier - spring web app for demonstrating your creative skills
+Current version 0.2 uses new design - I have downloaded open-source html tempaltes and used them instead of mine. They look better. But there are all the previous functions(login, register, view dahsboard etc.) 
 Database path ---   ColorFrontier/src/main/java/com/colorfrontier/MainApp/db/   -- you can access it using MongoDBCompass. There will be all the data about the app. For now there are only user data (nickname, password, email, projects etc.). Download this 'db' folder and execute cmd command : mongod --dbpath=path to db folder. Then open MongoDBCompass and use default port 27017 to access it.
 
 ColorFrontier/src/main/java/com/colorfrontier/MainApp/  --- folder to all java files. Model files, Controllers, Services
