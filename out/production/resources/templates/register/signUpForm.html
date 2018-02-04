@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/font-awesome.css"/>
+    <link rel="stylesheet" href="css/gsdk.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Biryani:900" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" style="color: #fff;">ColorFrontier</a>
+        </div>
+    </div>
+</nav>
+
+
+
+<!-- PICTURE BACKGROUND -->
+<div class="jumbotron register-bg text-center">
+    <h1 class="white-txt" style="font-family: Biryani;">CREATE AN ACCOUNT</h1>
+</div>
+<!-- PICTURE BACKGROUND END-->
+
+
+<!-- CENTER MENU BAR -->
+<div>
+    <div class="jumbotron text-center" style="background: transparent;">
+        <form class="form-horizontal" th:action="@{/regsuccess}" th:object="${UserObject}" method="post">
+            <fieldset>
+                <div id="legend">
+                    <legend class="">Register</legend>
+                </div>
+                <div class="control-group">
+                    <!-- Username -->
+                    <label class="control-label">Username</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" th:field="*{username}"/>
+                        <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+                    </div>
+                </div>
+                <hr/>
+                <div class="control-group">
+                    <!-- E-mail -->
+                    <label class="control-label">E-mail</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" th:field="*{email}"/>
+                        <p class="help-block">Please provide your E-mail</p>
+                    </div>
+                </div>
+                <hr/>
+                <div class="control-group">
+                    <!-- Password-->
+                    <label class="control-label">Password</label>
+                    <div class="controls">
+                        <input type="password" class="input-xlarge" th:field="*{password}"/>
+                        <p class="help-block">It should contain number and symbols</p>
+                    </div>
+                </div>
+                <hr/>
+                <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls">
+                        <input type="submit" class="btn btn-primary btn-fill" value="Register"/>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<!-- CENTER MENU BAR END-->
+
+
+</body>
+</html>

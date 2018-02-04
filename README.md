@@ -1,10 +1,9 @@
-# ProjectHideout - spring web app for demonstrating your creative skills
-Current version 0.2 uses new design - I have downloaded open-source html tempaltes and used them instead of mine. They look better. But there are all the previous functions(login, register, view dahsboard etc.) 
-Database path ---   ProjectHideout/src/main/java/com/ProjectHideout/MainApp/db/   -- you can access it using MongoDBCompass. There will be all the data about the app. For now there are only user data (nickname, password, email, projects etc.). Download this 'db' folder and execute cmd command : mongod --dbpath=path to db folder. Then open MongoDBCompass and use default port 27017 to access it.
+# ColorFrontier - spring web app for demonstrating your creative skills
+Database path ---   ColorFrontier/src/main/java/com/colorfrontier/MainApp/db/   -- you can access it using MongoDBCompass. There will be all the data about the app. For now there are only user data (nickname, password, email, projects etc.). Download this 'db' folder and execute cmd command : mongod --dbpath=path to db folder. Then open MongoDBCompass and use default port 27017 to access it.
 
-ProjectHideout/src/main/java/com/ProjectHideout/MainApp/  --- folder to all java files. Model files, Controllers, Services
+ColorFrontier/src/main/java/com/colorfrontier/MainApp/  --- folder to all java files. Model files, Controllers, Services
 
-ProjectHideout/src/main/resources/templates/   --- folder to all html files. They are divided into folders ( for example sections folder - contains all website sections like best projects, latest etc.)
+ColorFrontier/src/main/resources/templates/   --- folder to all html files. They are divided into folders ( for example sections folder - contains all website sections like best projects, latest etc.)
 
 # Contributing
 Working on project together is awesome! I would really like it. It's really interesting for me to feel the working environment like on real job.
@@ -23,3 +22,5 @@ What am I planning to do:
 4. And improve design.
 
 I hope you're interested in taking part in development, maybe we will work on this together!
+
+![img](Preview.png)
