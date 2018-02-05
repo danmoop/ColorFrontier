@@ -3,40 +3,36 @@ package com.colorfrontier.MainApp.Model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Set;
+import java.util.List;
 
 @Document(collection = "projects")
 public class Project
 {
     @Id
     private String id;
-    private String title;
+    private String name;
     private User author;
     private String short_description;
-    private String content;
-    private Set<Comment> comments;
+    private List<Comment> comments;
     private int likes;
+    private String html;
 
-    public void setContent(String content)
-    {
-        this.content = content;
-    }
 
-    public Set<Comment> getComments()
+    public List<Comment> getComments()
     {
         return comments;
     }
 
-    public void addComment(User author, String text)
-    {
-        comments.add(new Comment(author, text));
-    }
-
     public Project() {}
 
-    public String getContent()
+    public Project(User author, String name, String short_description, List<Comment> comments, int likes, String html)
     {
-        return content;
+        this.name = name;
+        this.author = author;
+        this.short_description = short_description;
+        this.comments = comments;
+        this.likes = likes;
+        this.html = html;
     }
 
     public int getLikes()
@@ -44,19 +40,28 @@ public class Project
         return likes;
     }
 
-    public Project(String title, User author, String short_description, String content, Set<Comment> comments, int likes)
-    {
-        this.title = title;
-        this.author = author;
-        this.short_description = short_description;
-        this.content = content;
-        this.comments = comments;
+    public void setLikes(int likes) {
         this.likes = likes;
     }
 
-    public void setTitle(String title)
-    {
-        this.title = title;
+    public String getHtml() {
+        return html;
+    }
+
+    public void setHtml(String html) {
+        this.html = html;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setAuthor(User author)
@@ -67,12 +72,6 @@ public class Project
     public void setShort_description(String short_description)
     {
         this.short_description = short_description;
-    }
-
-    public String getTitle()
-    {
-
-        return title;
     }
 
     public User getAuthor()

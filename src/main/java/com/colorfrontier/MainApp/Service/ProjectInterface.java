@@ -5,5 +5,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface ProjectInterface extends MongoRepository<Project, String>
 {
-    public Project findByTitle(String title);
+    public Project findByName(String name);
 }

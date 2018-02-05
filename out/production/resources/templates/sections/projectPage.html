@@ -66,9 +66,15 @@
     </div>
 </nav>
 
-<h1 th:text="${Project.title}"></h1>
-<h1 th:text="${Project.short_description}"></h1>
-<h1 th:text="${Project.author.username}"></h1>
+<h3 th:inline="text">[[${Project.name}]]</h3>
+<h4 th:inline="text">[[${Project.short_description}]]</h4>
+<h3 th:inline="text">Published by <strong>[[${Project.author.username}]]</strong></h3>
+
+<hr/>
+
+<div th:utext="${ContentHTML}" style="margin: 30px;">
+
+</div>
 
 </body>
 </html>

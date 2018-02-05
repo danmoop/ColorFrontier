@@ -83,7 +83,7 @@ public class User
     {
         for(int i = 0; i < projects.size(); i++)
         {
-            if(project.getTitle().equals(projects.get(i).getTitle())
+            if(project.getName().equals(projects.get(i).getName())
                     && project.getShort_description().equals(projects.get(i).getShort_description())
                     && project.getAuthor().getUsername().equals(projects.get(i).getAuthor().getUsername()))
             {
