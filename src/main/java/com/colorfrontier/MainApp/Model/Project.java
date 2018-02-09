@@ -16,7 +16,11 @@ public class Project
     private List<Comment> comments;
     private int likes;
     private String html;
+    private List<User> users_liked;
 
+    public List<User> getUsers_liked() {
+        return users_liked;
+    }
 
     public List<Comment> getComments()
     {
@@ -25,7 +29,7 @@ public class Project
 
     public Project() {}
 
-    public Project(User author, String name, String short_description, List<Comment> comments, int likes, String html)
+    public Project(User author, String name, String short_description, List<Comment> comments, int likes, String html, List<User> users_liked)
     {
         this.name = name;
         this.author = author;
@@ -33,6 +37,7 @@ public class Project
         this.comments = comments;
         this.likes = likes;
         this.html = html;
+        this.users_liked = users_liked;
     }
 
     public int getLikes()
@@ -82,5 +87,22 @@ public class Project
     public String getShort_description()
     {
         return short_description;
+    }
+
+    public void likeProject(User user)
+    {
+        for(int i = 0; i < users_liked.size(); i++)
+        {
+            if(user.getId().equals(users_liked.get(i).getId()))
+            {
+                users_liked.remove(user);
+            }
+
+            else
+            {
+                users_liked.add(user);
+            }
+
+        }
     }
 }

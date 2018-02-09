@@ -89,7 +89,8 @@ public class ProjectController
                 project.getShort_description(),
                 new ArrayList<Comment>(),
                 0,
-                HtmlEscape.unescapeHtml(project.getHtml())
+                HtmlEscape.unescapeHtml(project.getHtml()),
+                new ArrayList<User>()
         );
 
         projectInterface.save(userProject);

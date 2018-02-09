@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/flat-ui.css"/>
     <link rel="stylesheet" href="../css/main.css"/>
 </head>
-<body style="overflow-x: hidden; background-color: rgb(249, 249, 249);">
+<body class="image-bg" style="overflow-x: hidden; background-color: rgb(249, 249, 249);">
 
 <nav class="navbar navbar-default" style="position:relative; background: #2f4154;" role="navigation">
     <div class="navbar-header">
@@ -36,7 +36,7 @@
             <h4 th:text="${UserObject.username}"></h4>
             <h4 th:text="${UserObject.email}"></h4>
         </div>
-        <div class="col-sm-8 text-center shadow-card" style="margin-left: 50px;">
+        <div class="col-sm-8 text-center shadow-card" style="margin-left: 50px; background-color: rgba(249,249,249, 0.95);">
             <div class="row">
                 <div class="col-sm-4 divider-right">
                     <h6>Total Projects</h6>
@@ -55,12 +55,6 @@
             <div th:if="${#lists.size(UserObject.projects) == 0}" style="margin-top: 100px;">
                 <h4 th:inline="text">[[${UserObject.username}]]'s projects</h4>
                 <h3 th:inline="text">[[${UserObject.username}]] doesn't have any project yet</h3>
-                <a href="/addproject">
-                    <button class="btn btn-primary btn-fill">
-                        <b>Add a new project</b>
-                    </button>
-                </a>
-                <br/>
                 <br/>
                 <h6 style="width: 90%;">
                     After publishing projects they will be displayed here. Just click on them to proceed to project's page to see comments, and how many people have viewed this project.
@@ -75,11 +69,6 @@
                         </div>
                     </div>
                 </div>
-                <a href="/addproject">
-                    <button class="btn btn-primary btn-fill" style="margin: 15px;">
-                        <b>Add a new project</b>
-                    </button>
-                </a>
             </div>
         </div>
     </div>

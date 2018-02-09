@@ -105,3 +105,11 @@
     border-right: 1px solid #3a3a3a;
     padding: 0 10px;
 }
+
+.image-bg{
+
+    background-image: url("../img/dashboard-img.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

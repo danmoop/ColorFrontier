@@ -11,60 +11,23 @@
 <body style="overflow-x: hidden; background-color: rgb(249, 249, 249);">
 
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/" style="color: #fff;">ColorFrontier</a>
-        </div>
-        <div th:if="${LoggedUser.username == null}">
-            <div class="centermenu">
-                <ul class="nav navbar-nav">
-                    <span class="white-txt" style="padding-right: 15px;">Hello, Guest</span>
-                    <a href="/register"><button class="btn btn-primary btn-fill"><b>Register</b></button></a>
-                </ul>
-            </div>
-            <div style="float:right;">
-                <a class="navbar-brand white-txt" href="/login">Login</a>
-            </div>
-        </div>
-
-        <div th:if="${LoggedUser != null} ? ${LoggedUser.username}">
-            <div class="centermenu">
-                <ul class="nav navbar-nav">
-                    <br/>
-                    <h6 class="white-txt" style="padding-right: 15px;" th:utext=" 'Hello, ' + ${LoggedUser.username}"></h6>
-                </ul>
-            </div>
-            <div style="float:right;">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <form th:action="@{/openDashboard}" method="post">
-                            <br/>
-                            <input type="submit" value="My Profile" style="
-                            background-color: transparent;
-                            color: white;
-                            border: 0;
-                            font-weight: bold;
-                            font-size: 20px;
-                            padding-right: 100px;"/>
-                        </form>
-                    </div>
-                    <div class="col-sm-6">
-                        <form th:action="@{/logout}" method="post">
-                            <br/>
-                            <input type="submit" value="Logout" style="
-                            background-color: transparent;
-                            color: white;
-                            border: 0;
-                            font-weight: bold;
-                            font-size: 20px;"/>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+<nav class="navbar navbar-default" style="position:relative; background: #2f4154;" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="color: white;">ColorFrontier</a>
     </div>
-</nav>
+    <div class="collapse navbar-collapse text-center" id="navbar-collapse-01">
+        <a href="#/" th:if="${LoggedUser.username == null}" class="center-nav-txt white"><b>Hello, Guest</b></a>
+        <a href="#/" th:if="${LoggedUser != null} ? ${LoggedUser.username}" class="center-nav-txt white" th:inline="text"><b>Hello, [[${LoggedUser.username}]]</b></a>
+        <form class="navbar-form navbar-right" action="#" role="search">
+            <div class="form-group">
+                <a href="/register" th:if="${LoggedUser.username == null}" class="nav-link white"><b>Register</b></a>
+                <a href="/login" th:if="${LoggedUser.username == null}" class="nav-link white" style="border:none;"><b>Login</b></a>
+                <a href="/dashboard" th:if="${LoggedUser != null} ? ${LoggedUser.username}" class="nav-link white" style="border:none;"><b>My Profile</b></a>
+                <a href="/logout" th:if="${LoggedUser != null} ? ${LoggedUser.username}" class="nav-link white" style="border:none;"><b>Logout</b></a>
+            </div>
+        </form>
+    </div>
+</nav><!-- /navbar -->
 
 <h3 th:inline="text">[[${Project.name}]]</h3>
 <h4 th:inline="text">[[${Project.short_description}]]</h4>

@@ -18,6 +18,8 @@ public class User
     private List<Project> projects;
     private String role;
     private int totalLikes;
+    private int totalViews;
+
 
     public int getTotalViews() {
         return totalViews;
@@ -27,7 +29,6 @@ public class User
         this.totalViews = totalViews;
     }
 
-    private int totalViews;
 
     public String getRole() {
         return role;
@@ -78,6 +79,10 @@ public class User
         this.role = role;
         this.totalLikes = totalLikes;
         this.totalViews = totalViews;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public List<Project> getProjects() {

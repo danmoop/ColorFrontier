@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/flat-ui.css"/>
     <link rel="stylesheet" href="../css/main.css"/>
 </head>
-<body style="overflow-x: hidden; background-color: rgb(249, 249, 249);">
+<body class="image-bg" style="overflow-x: hidden; background-color: rgb(249, 249, 249);">
 
 <!-- NAVIGATION -->
 <!-- NAVIGATION -->
@@ -36,9 +36,10 @@
         <div class="row">
             <div class="col-sm-3 text-center shadow-card">
                 <h4 th:text="${LoggedUser.username}"></h4>
+                <hr/>
                 <h4 th:text="${LoggedUser.email}"></h4>
             </div>
-            <div class="col-sm-8 text-center shadow-card" style="margin-left: 50px;">
+            <div class="col-sm-8 text-center shadow-card" style="margin-left: 50px; background-color: rgba(249,249,249, 0.95);">
                 <div class="row">
                     <div class="col-sm-4 divider-right">
                         <h6>Total Projects</h6>
