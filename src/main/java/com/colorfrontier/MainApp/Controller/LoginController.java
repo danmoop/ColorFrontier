@@ -5,6 +5,7 @@ import com.colorfrontier.MainApp.Service.RegisterInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -36,7 +37,7 @@ public class LoginController
 
         String md5Password = output.toLowerCase();
 
-        if(userInDb != null && md5Password.equals(userInDb.getPassword()) && !userInDb.getBanned())
+        if(userInDb != null && md5Password.equals(userInDb.getPassword()) && !userInDb.isBanned())
         {
             ModelAndView indexPage = new ModelAndView();
             model.addAttribute("LoggedUser", userInDb);
@@ -45,7 +46,7 @@ public class LoginController
             return indexPage; // redirect to home page
         }
 
-        else if (userInDb != null && userInDb.getBanned() && md5Password.equals(userInDb.getPassword()))
+        else if (userInDb != null && userInDb.isBanned() && md5Password.equals(userInDb.getPassword()))
         {
             ModelAndView youarebanned = new ModelAndView();
             youarebanned.setViewName("misc/youarebanned");
@@ -61,7 +62,7 @@ public class LoginController
 
     }
 
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public ModelAndView logoutPage(SessionStatus sessionStatus)
     {
         sessionStatus.setComplete();

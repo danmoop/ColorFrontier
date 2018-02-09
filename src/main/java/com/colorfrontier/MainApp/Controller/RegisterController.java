@@ -43,7 +43,7 @@ public class RegisterController
                         user.getEmail(),
                         md5Password,
                         false, new ArrayList<>(),
-                        "User", 0
+                        "User", 0, 0
             ));
 
             return "register/register_success";

@@ -5,20 +5,19 @@
     <title>Title</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/font-awesome.css"/>
-    <link rel="stylesheet" href="css/gsdk.css"/>
+    <link rel="stylesheet" href="css/flat-ui.css"/>
     <link rel="stylesheet" href="css/main.css"/>
     <link href="https://fonts.googleapis.com/css?family=Biryani:900" rel="stylesheet"/>
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/" style="color: #fff;">ColorFrontier</a>
-        </div>
+<!-- NAVIGATION -->
+<!-- NAVIGATION -->
+<nav class="navbar navbar-default" style="position:relative; background: #2f4154" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="color: white;">ColorFrontier</a>
     </div>
-</nav>
-
+</nav><!-- /navbar -->
 
 
 <!-- PICTURE BACKGROUND -->
@@ -40,7 +39,7 @@
                     <!-- Username -->
                     <label class="control-label">Username</label>
                     <div class="controls">
-                        <input type="text" class="input-xlarge" th:field="*{username}"/>
+                        <input type="text" th:field="*{username}" class="form-control input-hg center-input" placeholder="Username"/>
                     </div>
                 </div>
                 <hr/>
@@ -48,7 +47,7 @@
                     <!-- Password-->
                     <label class="control-label">Password</label>
                     <div class="controls">
-                        <input type="password" class="input-xlarge" th:field="*{password}"/>
+                        <input type="password" th:field="*{password}" class="form-control input-hg center-input" placeholder="Username"/>
                     </div>
                 </div>
                 <hr/>

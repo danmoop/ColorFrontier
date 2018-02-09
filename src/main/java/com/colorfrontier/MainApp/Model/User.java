@@ -19,6 +19,16 @@ public class User
     private String role;
     private int totalLikes;
 
+    public int getTotalViews() {
+        return totalViews;
+    }
+
+    public void setTotalViews(int totalViews) {
+        this.totalViews = totalViews;
+    }
+
+    private int totalViews;
+
     public String getRole() {
         return role;
     }
@@ -58,7 +68,7 @@ public class User
         return username;
     }
 
-    public User(String username, String email, String password, Boolean banned, List<Project> projects, String role, int totalLikes)
+    public User(String username, String email, String password, Boolean banned, List<Project> projects, String role, int totalLikes, int totalViews)
     {
         this.username = username;
         this.email = email;
@@ -67,6 +77,7 @@ public class User
         this.projects = projects;
         this.role = role;
         this.totalLikes = totalLikes;
+        this.totalViews = totalViews;
     }
 
     public List<Project> getProjects() {
@@ -100,8 +111,13 @@ public class User
         return password;
     }
 
-    public Boolean getBanned() {
+    public Boolean isBanned() {
         return banned;
+    }
+
+    public void addView()
+    {
+        totalViews = totalViews + 1;
     }
 
     public User() {}

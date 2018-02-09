@@ -11,14 +11,23 @@
 }
 
 .picture-bg{
-    background-image: url("../img/topbg.jpeg");
+
+    background-image: url("../img/topbg.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    padding-top: 200px;
+    padding-bottom: 200px;
 }
 
 .white-txt{
     color: white;
+    font-weight: bold;
+    font-family: Biryani;
+}
+
+.dark-txt{
+    color: #3a3a3a;
     font-weight: bold;
 }
 
@@ -66,4 +75,33 @@
     -webkit-box-shadow: 0px 0px 13px 1px rgba(0,0,0,0.2);
     -moz-box-shadow: 0px 0px 13px 1px rgba(0,0,0,0.2);
     box-shadow: 0px 0px 13px 1px rgba(0,0,0,0.2);
+}
+
+.nav-link{
+    margin-right: 10px;
+    font-size: 20px;
+    border-right: 1px solid #3a3a3a;
+    padding: 0 10px;
+}
+
+.center-nav-txt{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 50%;
+    font-size: 20px;
+}
+
+.center-input{
+    margin: 0px auto;
+    width: 50%;
+}
+
+.white{
+    color: white;
+}
+
+.divider-right{
+    border-right: 1px solid #3a3a3a;
+    padding: 0 10px;
 }

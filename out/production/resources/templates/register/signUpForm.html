@@ -5,7 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/font-awesome.css"/>
-    <link rel="stylesheet" href="css/gsdk.css"/>
+    <link rel="stylesheet" href="css/flat-ui.css"/>
     <link rel="stylesheet" href="css/main.css"/>
 
     <link href="https://fonts.googleapis.com/css?family=Biryani:900" rel="stylesheet"/>
@@ -13,13 +13,11 @@
 <body>
 
 <!-- NAVIGATION -->
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/" style="color: #fff;">ColorFrontier</a>
-        </div>
+<nav class="navbar navbar-default" style="position:relative; background: #2f4154" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/" style="color: white;">ColorFrontier</a>
     </div>
-</nav>
+</nav><!-- /navbar -->
 
 
 
@@ -42,8 +40,8 @@
                     <!-- Username -->
                     <label class="control-label">Username</label>
                     <div class="controls">
-                        <input type="text" class="input-xlarge" th:field="*{username}"/>
-                        <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+                        <input type="text" th:field="*{username}" class="form-control input-hg center-input" placeholder="Username"/>
+                        <p>Username can contain any letters or numbers, without spaces</p>
                     </div>
                 </div>
                 <hr/>
@@ -51,8 +49,8 @@
                     <!-- E-mail -->
                     <label class="control-label">E-mail</label>
                     <div class="controls">
-                        <input type="text" class="input-xlarge" th:field="*{email}"/>
-                        <p class="help-block">Please provide your E-mail</p>
+                        <input type="text" th:field="*{email}" class="form-control input-hg center-input" placeholder="Email"/>
+                        <p>Please provide your E-mail</p>
                     </div>
                 </div>
                 <hr/>
@@ -60,15 +58,15 @@
                     <!-- Password-->
                     <label class="control-label">Password</label>
                     <div class="controls">
-                        <input type="password" class="input-xlarge" th:field="*{password}"/>
-                        <p class="help-block">It should contain number and symbols</p>
+                        <input type="password" th:field="*{password}" class="form-control input-hg center-input" placeholder="Password"/>
+                        <p>It should contain number and symbols</p>
                     </div>
                 </div>
                 <hr/>
                 <div class="control-group">
                     <!-- Button -->
                     <div class="controls">
-                        <input type="submit" class="btn btn-primary btn-fill" value="Register"/>
+                        <input type="submit" class="btn btn-primary" value="Register"/>
                     </div>
                 </div>
             </fieldset>
