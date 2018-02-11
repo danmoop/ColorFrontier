@@ -4,3 +4,9 @@
 
         document.getElementById("contentInp").value = projectdata;
     }
+
+    function sendComment()
+    {
+        var projectname = document.title;
+        document.getElementById("commentInp").value = projectname;
+    }

@@ -1,7 +1,5 @@
 package com.colorfrontier.MainApp.Model;
 
-import com.colorfrontier.MainApp.Debug;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,7 +8,9 @@ import java.util.List;
 @Document(collection = "projects")
 public class Project
 {
+
     @Id
+
     private String id;
     private String name;
     private User author;
@@ -135,5 +135,10 @@ public class Project
     public void addView()
     {
         setViews(getViews() + 1);
+    }
+
+    public void addComment(Comment comment)
+    {
+        comments.add(comment);
     }
 }

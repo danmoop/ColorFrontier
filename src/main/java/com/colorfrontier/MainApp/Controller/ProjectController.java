@@ -1,6 +1,7 @@
 package com.colorfrontier.MainApp.Controller;
 
 
+import com.colorfrontier.MainApp.Debug;
 import com.colorfrontier.MainApp.Model.Comment;
 import com.colorfrontier.MainApp.Model.Project;
 import com.colorfrontier.MainApp.Model.User;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.unbescape.html.HtmlEscape;
 
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.ArrayList;
 
 import static org.thymeleaf.util.StringUtils.unescapeJava;
@@ -33,6 +34,7 @@ public class ProjectController
     {
         model.addAttribute("Project", projectInterface.findByName(title));
         model.addAttribute("ContentHTML", unescapeJava(projectInterface.findByName(title).getHtml()));
+        model.addAttribute("CommentObject", new Comment());
 
         Project projectFromDB = projectInterface.findByName(title);
 
@@ -69,9 +71,11 @@ public class ProjectController
     }
 
     @PostMapping("/publishProject")
-    public ModelAndView publishProject(@ModelAttribute Project project, @RequestBody String projectdata, @ModelAttribute("LoggedUser") User user) throws UnsupportedEncodingException {
+    public ModelAndView publishProject(@ModelAttribute Project project, @RequestBody String projectdata, @ModelAttribute("LoggedUser") User user) throws UnsupportedEncodingException, FileNotFoundException {
 
         System.out.println(project.getHtml());
+
+        InputStream inputStream = null;
 
         Project userProject = new Project(
                 user,
@@ -82,6 +86,7 @@ public class ProjectController
                 HtmlEscape.unescapeHtml(project.getHtml()),
                 new ArrayList<User>(),
                 0
+
         );
 
         projectInterface.save(userProject);
@@ -114,5 +119,39 @@ public class ProjectController
         projectInterface.save(projectFromDB);
 
         return new ModelAndView("redirect:/" + project.getName());
+    }
+
+    @PostMapping("/sendComment")
+    public ModelAndView sendComment(Model model, @ModelAttribute Comment comment, @ModelAttribute("LoggedUser") User user)
+    {
+       /* Comment comment1 = new Comment(
+                user,
+                comment.getText(),
+                comment.getFromWhichProject()
+        );
+
+        Project projectFromDB = projectInterface.findByName(comment.getFromWhichProject());
+
+        projectFromDB.addComment(comment1);
+
+        projectInterface.save(projectFromDB);*/
+
+       Debug.Log(user.getUsername());
+       Debug.Log(comment.getText());
+       Debug.Log(comment.getFromWhichProject());
+
+       Comment comment1 = new Comment(
+               user,
+               comment.getText(),
+               comment.getFromWhichProject()
+       );
+
+       Project projectFromDB = projectInterface.findByName(comment.getFromWhichProject());
+
+       projectFromDB.addComment(comment1);
+
+       projectInterface.save(projectFromDB);
+
+       return new ModelAndView("redirect:/" + comment.getFromWhichProject());
     }
 }

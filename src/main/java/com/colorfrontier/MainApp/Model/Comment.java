@@ -4,12 +4,21 @@ public class Comment
 {
     private User author;
     private String text;
+    private String fromWhichProject;
+
+    public void setFromWhichProject(String fromWhichProject) {
+        this.fromWhichProject = fromWhichProject;
+    }
+
+    public String getFromWhichProject() {
+
+        return fromWhichProject;
+    }
 
     public Comment() {}
 
     public void setAuthor(User author)
     {
-
         this.author = author;
     }
 
@@ -20,7 +29,6 @@ public class Comment
 
     public User getAuthor()
     {
-
         return author;
     }
 
@@ -29,10 +37,9 @@ public class Comment
         return text;
     }
 
-    public Comment(User author, String text)
-    {
-
+    public Comment(User author, String text, String fromWhichProject) {
         this.author = author;
         this.text = text;
+        this.fromWhichProject = fromWhichProject;
     }
 }
