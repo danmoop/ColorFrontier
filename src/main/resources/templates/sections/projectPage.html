@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title th:inline="text">[[${Project.name}]]</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../css/font-awesome.css"/>
     <link rel="stylesheet" href="../css/flat-ui.css"/>
@@ -29,14 +29,39 @@
     </div>
 </nav><!-- /navbar -->
 
-<h3 th:inline="text">[[${Project.name}]]</h3>
-<h4 th:inline="text">[[${Project.short_description}]]</h4>
-<h3 th:inline="text">Published by <strong>[[${Project.author.username}]]</strong></h3>
+<div class="container text-center">
+    <h3 th:inline="text">[[${Project.name}]]</h3>
+    <h4 th:inline="text">[[${Project.short_description}]]</h4>
+    <h6 th:inline="text">Published by <a th:href="'user/' + ${Project.author.username}">[[${Project.author.username}]]</a></h6>
+</div>
 
 <hr/>
 
 <div th:utext="${ContentHTML}" style="margin: 30px;">
+</div>
 
+<hr/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 text-center">
+            <div th:if="${LoggedUser != null} ? ${LoggedUser.username}">
+                <form th:action="@{/likeProject}" method="post" th:object="${Project}">
+                    <input class="btn btn-primary" type="submit" value="Like"/>
+                    <input type="hidden" th:field="*{name}"/>
+                    <input type="hidden" th:field="*{author.username}"/>
+                    <b th:inline="text">[[${Project.likes}]]</b>
+                </form>
+            </div>
+            <div th:if="${LoggedUser.username == null}">
+                <b>Log in to like this project</b> <br/>
+                Total Likes: <b th:inline="text">[[${Project.likes}]]</b>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <span th:inline="text">Total Views: <b>[[${Project.views}]]</b></span>
+        </div>
+    </div>
 </div>
 
 </body>

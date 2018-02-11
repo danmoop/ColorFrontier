@@ -1,5 +1,7 @@
 package com.colorfrontier.MainApp.Model;
 
+import com.colorfrontier.MainApp.Debug;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,6 +19,7 @@ public class Project
     private int likes;
     private String html;
     private List<User> users_liked;
+    private int views;
 
     public List<User> getUsers_liked() {
         return users_liked;
@@ -29,7 +32,7 @@ public class Project
 
     public Project() {}
 
-    public Project(User author, String name, String short_description, List<Comment> comments, int likes, String html, List<User> users_liked)
+    public Project(User author, String name, String short_description, List<Comment> comments, int likes, String html, List<User> users_liked, int views)
     {
         this.name = name;
         this.author = author;
@@ -38,6 +41,7 @@ public class Project
         this.likes = likes;
         this.html = html;
         this.users_liked = users_liked;
+        this.views = views;
     }
 
     public int getLikes()
@@ -56,6 +60,15 @@ public class Project
     public void setHtml(String html) {
         this.html = html;
     }
+
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
+    }
+
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
@@ -89,20 +102,38 @@ public class Project
         return short_description;
     }
 
-    public void likeProject(User user)
+    public boolean likedProject(User user)
     {
-        for(int i = 0; i < users_liked.size(); i++)
+
+        if(users_liked.size() == 0)
         {
-            if(user.getId().equals(users_liked.get(i).getId()))
-            {
-                users_liked.remove(user);
-            }
-
-            else
-            {
-                users_liked.add(user);
-            }
-
+            users_liked.add(user);
+            setLikes(getLikes() + 1);
+            return true;
         }
+
+        else {
+            int i = 0;
+            for(; i < users_liked.size(); i++) {
+                if(!user.getId().equals(users_liked.get(i).getId())) {
+                    continue;
+                } else {
+                    break;
+                }
+            }
+
+            if (i == users_liked.size()) {
+                users_liked.add(user);
+                setLikes(getLikes() + 1);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+    public void addView()
+    {
+        setViews(getViews() + 1);
     }
 }

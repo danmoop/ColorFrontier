@@ -60,8 +60,8 @@
         <div th:each="project: ${Projects}">
             <div class="col-sm-2 shadow-card" style="margin: 10px; padding-top: 20px; padding-bottom:20px;">
                 <a th:href="${project.name}"><h3 th:inline="text"><b>[[${project.name}]]</b></h3></a>
-                <h4 th:inline="text"><a th:href="'/user/'+${project.author.username}">[[${project.author.username}]]</a></h4>
                 <a th:href="${project.name}"><h5 th:text="${project.short_description}"></h5></a>
+                <h6 th:inline="text"><a th:href="'/user/'+${project.author.username}">[[${project.author.username}]]</a></h6>
             </div>
         </div>
     </div>

@@ -17,7 +17,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import static org.thymeleaf.util.StringUtils.unescapeJava;
-import static org.unbescape.html.HtmlEscape.unescapeHtml;
 
 @Controller
 @SessionAttributes(value = "LoggedUser")
@@ -29,27 +28,27 @@ public class ProjectController
     @Autowired
     RegisterInterface registerInterface;
 
-    /*@PostMapping("/submitProject")
-    public ModelAndView addedProject(Model model, Project project, @ModelAttribute("LoggedUser") User user)
+    @GetMapping("/{title}")
+    public ModelAndView projectPage(@PathVariable String title, Model model)
     {
-        Project userProject = new Project(
-                project.getTitle(),
-                user,
-                project.getShort_description(),
-                project.getContent(),
-                project.getComments(),
-                0);
+        model.addAttribute("Project", projectInterface.findByName(title));
+        model.addAttribute("ContentHTML", unescapeJava(projectInterface.findByName(title).getHtml()));
 
-        projectInterface.save(userProject);
+        Project projectFromDB = projectInterface.findByName(title);
 
-        User user1 = registerInterface.findByUsername(user.getUsername());
+        projectFromDB.addView();
+        projectFromDB.getAuthor().addView();
 
-        user1.addProject(userProject);
+        projectInterface.save(projectFromDB);
 
-        registerInterface.save(user1);
+        User userFromDB = registerInterface.findByUsername(projectFromDB.getAuthor().getUsername());
 
-        return new ModelAndView("redirect:/dashboard");
-    }*/
+        userFromDB.addView();
+
+        registerInterface.save(userFromDB);
+
+        return new ModelAndView("sections/projectPage");
+    }
 
     @PostMapping("/deleteProject")
     public ModelAndView deleteProject(@ModelAttribute Project project, Model model, @ModelAttribute("LoggedUser") User user)
@@ -69,15 +68,6 @@ public class ProjectController
 
     }
 
-    @GetMapping("/{title}")
-    public ModelAndView projectPage(@PathVariable String title, Model model)
-    {
-        model.addAttribute("Project", projectInterface.findByName(title));
-        model.addAttribute("ContentHTML", unescapeJava(projectInterface.findByName(title).getHtml()));
-
-        return new ModelAndView("sections/projectPage");
-    }
-
     @PostMapping("/publishProject")
     public ModelAndView publishProject(@ModelAttribute Project project, @RequestBody String projectdata, @ModelAttribute("LoggedUser") User user) throws UnsupportedEncodingException {
 
@@ -90,7 +80,8 @@ public class ProjectController
                 new ArrayList<Comment>(),
                 0,
                 HtmlEscape.unescapeHtml(project.getHtml()),
-                new ArrayList<User>()
+                new ArrayList<User>(),
+                0
         );
 
         projectInterface.save(userProject);
@@ -103,5 +94,25 @@ public class ProjectController
 
 
         return new ModelAndView("redirect:/dashboard");
+    }
+
+    @PostMapping("/likeProject")
+    public ModelAndView likeProject(Model model, @ModelAttribute Project project, @ModelAttribute("LoggedUser") User user)
+    {
+        Project projectFromDB = projectInterface.findByName(project.getName());
+
+        if(projectFromDB.likedProject(user))
+        {
+            User userFromDB = registerInterface.findByUsername(project.getAuthor().getUsername());
+
+            userFromDB.addLike();
+
+            registerInterface.save(userFromDB);
+
+        }
+
+        projectInterface.save(projectFromDB);
+
+        return new ModelAndView("redirect:/" + project.getName());
     }
 }

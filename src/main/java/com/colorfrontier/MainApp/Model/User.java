@@ -122,7 +122,12 @@ public class User
 
     public void addView()
     {
-        totalViews = totalViews + 1;
+        setTotalViews(getTotalViews() + 1);
+    }
+
+    public void addLike()
+    {
+        setTotalLikes(getTotalLikes() + 1);
     }
 
     public User() {}

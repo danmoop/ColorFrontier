@@ -74,7 +74,7 @@
                             <div th:each="project: ${UserProjects}">
                                 <div class="col-sm-4 shadow-card" style="margin: 30px; padding-top: 20px; padding-bottom:20px;">
                                     <a th:href="${'/'+project.name}"><h3 th:inline="text"><b>[[${project.name}]]</b></h3></a>
-                                    <a th:href="${'/'+project.name}"><h5 th:text="${project.short_description}"></h5></a>
+                                    <a th:href="${'/'+project.name}"><h6 th:text="${project.short_description}"></h6></a>
 
                                     <form th:action="@{/deleteProject}" th:object="${project}" method="post">
                                         <input type="hidden" th:name="name" th:value="${project.name}"/>
