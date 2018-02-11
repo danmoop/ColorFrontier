@@ -140,17 +140,20 @@ public class ProjectController
        Debug.Log(comment.getText());
        Debug.Log(comment.getFromWhichProject());
 
-       Comment comment1 = new Comment(
-               user,
-               comment.getText(),
-               comment.getFromWhichProject()
-       );
+       if(!user.getUsername().equals("null"))
+       {
+           Comment comment1 = new Comment(
+                   user,
+                   comment.getText(),
+                   comment.getFromWhichProject()
+           );
 
-       Project projectFromDB = projectInterface.findByName(comment.getFromWhichProject());
+           Project projectFromDB = projectInterface.findByName(comment.getFromWhichProject());
 
-       projectFromDB.addComment(comment1);
+           projectFromDB.addComment(comment1);
 
-       projectInterface.save(projectFromDB);
+           projectInterface.save(projectFromDB);
+       }
 
        return new ModelAndView("redirect:/" + comment.getFromWhichProject());
     }

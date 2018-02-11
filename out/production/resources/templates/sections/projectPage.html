@@ -69,13 +69,14 @@
 
 <div class="container text-center">
     <h6 th:inline="text">Comments: <b>[[${#lists.size(Project.comments)}]]</b></h6>
-    <form th:action="@{/sendComment}" th:object="${CommentObject}" method="post">
+    <form th:if="${LoggedUser != null} ? ${LoggedUser.username}"  th:action="@{/sendComment}" th:object="${CommentObject}" method="post">
         <input type="text" class="form-control input-lg" th:field="*{text}" placeholder="Your comment" />
         <input type="hidden" th:field="*{author}" />
         <input type="hidden" id="commentInp" th:field="*{fromWhichProject}" />
         <br/>
         <input onclick="sendComment();" class="btn btn-primary" type="submit" value="Send"/>
     </form>
+    <span th:if="${LoggedUser.username == null}">Log in to comment</span>
 </div>
 
 <hr/>
