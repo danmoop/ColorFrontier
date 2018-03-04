@@ -27,4 +27,7 @@ What am I planning to do:
 
 I hope you're interested in taking part in development, maybe we will work on this together!
 
-![img](Preview.png)
+![img](gallery/1.png)
+![img](gallery/2.png)
+![img](gallery/3.png)
+![img](gallery/4.png)
