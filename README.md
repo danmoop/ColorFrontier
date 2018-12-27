@@ -1,4 +1,6 @@
 # ColorFrontier - spring web app for demonstrating your creative skills
+This project was supposed to be something like [behance](https://www.behance.net/) but also with videos. But at the end it was just an example of Spring project.
+
 Database path ---   ColorFrontier/src/main/java/com/colorfrontier/MainApp/db/   -- you can access it using MongoDBCompass. There will be all the data about the app. For now there are only user data (nickname, password, email, projects etc.). Download this 'db' folder and execute cmd command : mongod --dbpath=path to db folder. Then open MongoDBCompass and use default port 27017 to access it.
 
 **This project is a great way to learn some common things in Spring. This code has register/login system using mongodb, I store every user in database, every project. It displays data only about exact person in their dashboard, displays each person's projects.**
